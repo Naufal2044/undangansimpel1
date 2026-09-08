@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Undangan Pernikahan | Riya & Rima</title>
+
+  <!-- SEO & OpenGraph Meta -->
+  <meta name="description"
+    content="Undangan Pernikahan Digital Riya & Rima (Riyadhus Solikhin & Ukrimatul Azizah). Minggu, 04 Oktober 2026. Kehadiran dan doa restu Anda merupakan kehormatan bagi kami.">
+  <meta property="og:title" content="The Wedding of Riya & Rima">
+  <meta property="og:description" content="Undangan Pernikahan Digital Islami & Cerah">
+  <meta property="og:image" content="assets/images/groom.png">
+  <meta property="og:type" content="website">
+
+  <!-- Stylesheets & Fonts -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- Falling Petals Canvas Visual Effect -->
+  <canvas id="petals-canvas"></canvas>
+
+  <!-- ==========================================
+       1. COVER GATE / AMPLOP PEMBUKA
+       ========================================== -->
+  <div id="cover-gate">
+    <div class="cover-content">
+      <img src="assets/images/bismillah.svg" alt="Bismillah Calligraphy" class="bismillah-img">
+      <div class="cover-badge"><i class="fas fa-heart text-gold me-1"></i> Walimatul 'Ursy</div>
+      <p class="wedding-title">Undangan Pernikahan</p>
+      <h1 class="cover-names shimmer-gold">Riya &amp; Rima</h1>
+
+      <div class="guest-box">
+        <p class="guest-title">Kepada Yth:</p>
+        <h2 id="guest-name-cover" class="guest-name">Tamu Undangan</h2>
+      </div>
+
+      <button id="btn-open-invitation" class="btn-open" onclick="openEnvelopeDirectly()">
+        <i class="fas fa-envelope-open"></i> Buka Undangan
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       2. FLOATING CONTROLS (MUSIC & BOTTOM NAV)
+       ========================================== -->
+  <!-- Audio Control -->
+  <button id="music-toggle" class="music-player" aria-label="Play/Pause Background Music">
+    <i class="fas fa-music"></i>
+  </button>
+  <!-- Background Music Audio Source -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="assets/audio/pernikahan.mp3" type="audio/mpeg">
+    <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-wedding-483.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Sticky Bottom Navigation Bar -->
+  <nav class="bottom-nav">
+    <a href="#hero" class="nav-item active"><i class="fas fa-home"></i><span>Beranda</span></a>
+    <a href="#mempelai" class="nav-item"><i class="fas fa-user-friends"></i><span>Mempelai</span></a>
+    <a href="#acara" class="nav-item"><i class="fas fa-calendar-alt"></i><span>Acara</span></a>
+    <a href="#hadiah" class="nav-item"><i class="fas fa-gift"></i><span>Hadiah</span></a>
+    <a href="#rsvp" class="nav-item"><i class="fas fa-comment-dots"></i><span>RSVP</span></a>
+  </nav>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- ==========================================
+       3. HERO SECTION
+       ========================================== -->
+  <section id="hero" class="hero-section">
+    <div class="hero-card reveal reveal-scale active">
+      <img src="assets/images/bismillah.svg" alt="Bismillah Calligraphy" class="bismillah-img">
+      <p class="wedding-title">The Wedding Of</p>
+      <h1 class="couple-names-hero shimmer-gold">Riya &amp; Rima</h1>
+      <div class="hero-date-badge"><i class="far fa-calendar-check me-2"></i> Minggu, 04 Oktober 2026</div>
+
+      <!-- Countdown Timer -->
+      <div class="countdown-container">
+        <div class="timer-box">
+          <div id="timer-days" class="timer-num">00</div>
+          <div class="timer-label">Hari</div>
+        </div>
+        <div class="timer-box">
+          <div id="timer-hours" class="timer-num">00</div>
+          <div class="timer-label">Jam</div>
+        </div>
+        <div class="timer-box">
+          <div id="timer-minutes" class="timer-num">00</div>
+          <div class="timer-label">Menit</div>
+        </div>
+        <div class="timer-box">
+          <div id="timer-seconds" class="timer-num">00</div>
+          <div class="timer-label">Detik</div>
+        </div>
+      </div>
+
+      <div>
+        <a id="btn-add-calendar" 
+           href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Pernikahan+Riya+%26+Rima+(Riyadhus+%26+Ukrimatul)&dates=20261004T080000/20261004T130000&details=Undangan+Pernikahan+Riya+%26+Rima+(Riyadhus+Solikhin+%26+Ukrimatul+Azizah).+Minggu,+04+Oktober+2026.+Lokasi:+Klampok+lor+Rt03/Rw02+Kebonagung,+Demak.&location=Klampok+lor+Rt03/Rw02+Kebonagung,+Demak&ctz=Asia/Jakarta" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="btn-calendar">
+          <i class="fab fa-google"></i> Simpan Tanggal ke Google Calendar
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       4. MEMPELAI SECTION (QURAN & PROFILE)
+       ========================================== -->
+  <section id="mempelai" class="section-padding container">
+    <!-- Quran Verse Card -->
+    <div class="quran-card reveal reveal-scale">
+      <p class="quran-text">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا
+        وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ</p>
+      <p class="quran-translation">"Dan di antara tanda-tanda (kebesaran-Nya) ialah Dia menciptakan pasangan-pasangan
+        untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu
+        rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang
+        berpikir."</p>
+      <p class="quran-surah">(QS. Ar-Rum: 21)</p>
+    </div>
+
+    <div class="text-center reveal">
+      <p class="section-subtitle">Pasangan Mempelai</p>
+      <h2 class="section-title">Mempelai Pria &amp; Wanita</h2>
+      <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Dengan memohon rahmat dan ridho Allah SWT,
+        kami bermaksud menyelenggarakan pernikahan putra-putri kami:</p>
+      <div class="ornament-divider">
+        <div class="ornament-line"></div>
+        <i class="fas fa-star-and-crescent ornament-icon"></i>
+        <div class="ornament-line"></div>
+      </div>
+    </div>
+
+    <div class="mempelai-grid">
+      <!-- Groom Card -->
+      <div class="mempelai-card reveal reveal-left">
+        <div class="mempelai-img-wrapper">
+          <img src="assets/images/groom.png" alt="Riyadhus Solikhin">
+        </div>
+        <h3 class="mempelai-name">Riyadhus Solikhin</h3>
+        <p class="mempelai-fullname">Anak Pertama</p>
+        <p class="mempelai-parents">
+          Putra Pertama dari<br>
+          <strong>Bapak Rukani</strong><br>
+          &amp; <strong>Ibu Mas'amah (Almh)</strong>
+        </p>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-top:10px;">
+          <i class="fas fa-map-marker-alt text-gold me-1"></i> Soko Kidul Rt07/Rw01 Kebonagung, Demak.
+        </p>
+      </div>
+
+      <!-- Bride Card -->
+      <div class="mempelai-card reveal reveal-right">
+        <div class="mempelai-img-wrapper">
+          <img src="assets/images/bride.png" alt="Ukrimatul Azizah">
+        </div>
+        <h3 class="mempelai-name">Ukrimatul Azizah</h3>
+        <p class="mempelai-fullname">Anak Ketiga</p>
+        <p class="mempelai-parents">
+          Putri Ketiga dari<br>
+          <strong>Bapak Mukayin (Alm)</strong><br>
+          &amp; <strong>Ibu Zubaedah</strong>
+        </p>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-top:10px;">
+          <i class="fas fa-map-marker-alt text-gold me-1"></i> Klampok lor Rt03/Rw02 Kebonagung, Demak.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       5. RANGKAIAN ACARA & PETA LOKASI
+       ========================================== -->
+  <section id="acara" class="section-padding container">
+    <div class="text-center reveal">
+      <p class="section-subtitle">Waktu &amp; Tempat</p>
+      <h2 class="section-title">Rangkaian Acara Pernikahan</h2>
+      <div class="ornament-divider">
+        <div class="ornament-line"></div>
+        <i class="fas fa-kaaba ornament-icon"></i>
+        <div class="ornament-line"></div>
+      </div>
+    </div>
+
+    <div class="events-grid">
+      <!-- Akad Nikah Card -->
+      <div class="event-card reveal reveal-left">
+        <div class="event-header">
+          <div class="event-icon"><i class="fas fa-ring"></i></div>
+          <h3 class="event-title">Akad Nikah</h3>
+        </div>
+        <div class="event-details">
+          <div class="event-detail-item"><i class="far fa-calendar-alt text-gold"></i> <strong>Minggu, 04 Oktober
+              2026</strong></div>
+          <div class="event-detail-item"><i class="far fa-clock text-gold"></i> Pukul 08.00 - 09.00 WIB</div>
+          <div class="event-detail-item" style="margin-top:12px;"><i class="fas fa-home text-gold"></i> <strong>Dirumah
+              Mempelai Wanita</strong></div>
+          <p style="font-size:0.88rem; color:var(--text-muted); margin-top:4px;">Klampok lor Rt03/Rw02 Kebonagung, Demak
+          </p>
+        </div>
+        <a href="https://maps.app.goo.gl/pXuDRRnTUacwU4H26?g_st=ac" target="_blank" class="btn-map">
+          <i class="fas fa-map-marked-alt"></i> Petunjuk Lokasi Maps
+        </a>
+      </div>
+
+      <!-- Resepsi Card -->
+      <div class="event-card reveal reveal-right">
+        <div class="event-header">
+          <div class="event-icon"><i class="fas fa-glass-cheers"></i></div>
+          <h3 class="event-title">Resepsi Pernikahan</h3>
+        </div>
+        <div class="event-details">
+          <div class="event-detail-item"><i class="far fa-calendar-alt text-gold"></i> <strong>Minggu, 04 Oktober
+              2026</strong></div>
+          <div class="event-detail-item"><i class="far fa-clock text-gold"></i> Pukul 09.00 WIB - Selesai</div>
+          <div class="event-detail-item" style="margin-top:12px;"><i class="fas fa-home text-gold"></i> <strong>Dirumah
+              Mempelai Wanita</strong></div>
+          <p style="font-size:0.88rem; color:var(--text-muted); margin-top:4px;">Klampok lor Rt03/Rw02 Kebonagung, Demak
+          </p>
+        </div>
+        <a href="https://maps.app.goo.gl/pXuDRRnTUacwU4H26?g_st=ac" target="_blank" class="btn-map">
+          <i class="fas fa-map-marked-alt"></i> Petunjuk Lokasi Maps
+        </a>
+      </div>
+    </div>
+
+    <!-- Denah Lokasi Card -->
+    <div class="reveal reveal-scale"
+      style="margin-top:40px; background:var(--bg-card); border:1.5px solid var(--gold-light); border-radius:var(--radius-md); padding:30px; text-align:center; box-shadow:var(--shadow-md);">
+      <h3 style="font-family:var(--font-serif); color:var(--primary); margin-bottom:12px;"><i
+          class="fas fa-map-marked text-gold"></i> Denah Lokasi Acara</h3>
+      <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:20px;">Klampok lor Rt03/Rw02 Kebonagung, Demak
+      </p>
+
+      <div
+        style="width:100%; height:320px; border-radius:var(--radius-sm); overflow:hidden; border:2px solid var(--gold-light);">
+        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=-7.0050006,110.7163387&hl=id&z=16&output=embed"></iframe>
+      </div>
+      <div style="margin-top:15px;">
+        <a href="https://maps.app.goo.gl/pXuDRRnTUacwU4H26?g_st=ac" target="_blank" class="btn-map"
+          style="display:inline-flex;">
+          <i class="fas fa-directions"></i> Buka Rute Google Maps
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       6. STORY TIMELINE
+       ========================================== -->
+  <section id="story" class="section-padding container">
+    <div class="text-center reveal">
+      <p class="section-subtitle">Kisah Kami</p>
+      <h2 class="section-title">Perjalanan Cinta</h2>
+      <div class="ornament-divider">
+        <div class="ornament-line"></div>
+        <i class="fas fa-heart ornament-icon"></i>
+        <div class="ornament-line"></div>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <p class="timeline-date">Awal Pertemuan</p>
+          <h3 class="timeline-title">Awal Silaturahmi</h3>
+          <p class="timeline-desc">Awal perkenalan yang hangat dan penuh rasa syukur, niat baik untuk saling mengenal
+            dalam ridho Allah SWT.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <p class="timeline-date">Ikrar Suci</p>
+          <h3 class="timeline-title">Lamaran &amp; Kesepakatan</h3>
+          <p class="timeline-desc">Pertemuan dua keluarga besar untuk mempererat tali silaturahmi dan menyepakati
+            tanggal pernikahan suci.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <p class="timeline-date">04 Oktober 2026</p>
+          <h3 class="timeline-title">Menuju Pernikahan</h3>
+          <p class="timeline-desc">Insya Allah kami akan mengikrarkan akad nikah di Klampok lor, Kebonagung, Demak untuk
+            membangun keluarga sakinah, mawaddah, warahmah.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ==========================================
+       8. HADIAH DIGITAL / AMPLOP ONLINE
+       ========================================== -->
+  <section id="hadiah" class="section-padding container">
+    <div class="text-center reveal">
+      <p class="section-subtitle">Tanda Kasih</p>
+      <h2 class="section-title">Hadiah Digital &amp; Amplop Online</h2>
+      <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Doa restu Anda merupakan hadiah terindah
+        bagi kami. Namun jika Anda ingin memberikan hadiah digital, dapat menyalurkannya melalui:</p>
+      <div class="ornament-divider">
+        <div class="ornament-line"></div>
+        <i class="fas fa-gift ornament-icon"></i>
+        <div class="ornament-line"></div>
+      </div>
+    </div>
+
+    <div class="gift-grid">
+      <!-- Bank BNI -->
+      <div class="gift-card reveal reveal-scale">
+        <h4 style="color:var(--primary); font-family:var(--font-serif); font-size:1.4rem;">Bank BNI</h4>
+        <div class="account-num">1877 259 288</div>
+        <div class="account-name">a.n Ukrimatul Azizah</div>
+        <button class="btn-copy" data-copy="1877259288" onclick="copyText('1877259288', 'No. Rekening BNI (1877259288) berhasil disalin!')">
+          <i class="fas fa-copy"></i> Salin No. Rekening BNI
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       9. RSVP & BUKU TAMU LIVE
+       ========================================== -->
+  <section id="rsvp" class="section-padding container">
+    <div class="text-center reveal">
+      <p class="section-subtitle">Doa Restu Tamu</p>
+      <h2 class="section-title">Buku Tamu &amp; Ucapan Doa</h2>
+      <div class="ornament-divider">
+        <div class="ornament-line"></div>
+        <i class="fas fa-paper-plane ornament-icon"></i>
+        <div class="ornament-line"></div>
+      </div>
+    </div>
+
+    <div class="rsvp-container">
+      <!-- Form Ucapan & Doa -->
+      <div class="rsvp-form-card reveal reveal-left">
+        <h3 style="font-family:var(--font-serif); color:var(--primary); margin-bottom:18px;">Kirim Ucapan &amp; Doa Restu</h3>
+        <form id="rsvp-form">
+          <div class="form-group">
+            <label class="form-label" for="rsvp-nama">Nama Lengkap</label>
+            <input type="text" id="rsvp-nama" class="form-input" placeholder="Masukkan nama Anda" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="rsvp-pesan">Ucapan &amp; Doa Restu</label>
+            <textarea id="rsvp-pesan" class="form-textarea" rows="4"
+              placeholder="Tuliskan ucapan & doa restu untuk kedua mempelai..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">
+            <i class="fas fa-paper-plane me-2"></i> Kirim Ucapan &amp; Doa
+          </button>
+        </form>
+      </div>
+
+      <!-- Feed Ucapan Live -->
+      <div class="ucapan-feed-card reveal reveal-right">
+        <h3 style="font-family:var(--font-serif); color:var(--primary);">Ucapan &amp; Doa Restu</h3>
+        <div id="ucapan-list" class="ucapan-list">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       10. FOOTER
+       ========================================== -->
+  <footer>
+    <div class="container reveal">
+      <img src="assets/images/bismillah.svg" alt="Bismillah" class="bismillah-img"
+        style="max-width:160px; margin-bottom:15px;">
+      <h3 class="footer-names shimmer-gold">Riya &amp; Rima</h3>
+      <p style="margin-bottom:10px;">Terima kasih atas doa &amp; restu Bapak/Ibu/Saudara/i sekalian.</p>
+      <p style="font-size:0.8rem; opacity:0.7;">&copy; 2026 Riya &amp; Rima Wedding Invitation. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Firebase SDK (Compat Mode — Bekerja di file:// dan http://) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+  <!-- Main JavaScript File (Standard Script) -->
+  <script src="js/main.js"></script>
+</body>
+
+</html>
